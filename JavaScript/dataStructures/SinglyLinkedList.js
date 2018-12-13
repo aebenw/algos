@@ -102,6 +102,69 @@ class SinlyLinkedList{
             return true
         }
         return false
+    }
 
+    insert(val, index){
+        if(index < 0){
+            return false;
+        } else if(index === 0){
+             this.unshift(val)
+
+        } else if (index === this.length){
+            this.push(val)
+            return true
+        } else {
+            let newNode = new Node(val);
+            let preNode = this.get(index - 1);
+            let nextNode = preNode.next;
+            newNode.next = nextNode
+            preNode.next = newNode;
+            this.length++
+            return true
+        }
+    }
+
+    remove(index){
+        if(index < 0){
+            return false;
+        } else if(index === 0){
+             this.shift(val)
+        } else if (index === this.length - 1){
+            this.pop()
+            return true
+        }
+        let preNode = this.get(index - 1);
+        let removeNode = preNode.next;
+        let newNext = removeNode.next;
+
+        preNode.next = newNext;
+        this.length--;
+        return removeNode;
+    }
+
+    reverse(){
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        let previous = null;
+        let next;
+
+
+        for(let i=0; i < this.length; i++){
+            next = node.next;
+            node.next = previous
+            previous = node;
+            node = next;
+
+        }
     }
 }
+
+var list = new SinlyLinkedList()
+
+list.push("Hello")
+list.push("Goodbye")
+list.push("ehem")
+list.push("goodday")
+
+//This pushing pushes something at the end of the list
