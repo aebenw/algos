@@ -33,26 +33,19 @@ class Stack{
             this.first = node
         }
 
-        this.size++;
-        return this.size;
+        return ++this.size;
     }
 
     //unshift
     pop(){
-        if (this.first === null)return undefined
-
-        if (this.first === this.last){
-                this.first = null;
-                this.last = null;
-                this.size = 0;
-                return this.size
-            } else {
-                let oldFirst = this.first;
-                this.first = oldFirst.next;
-                this.size--;
-                return oldFirst.val;
-            }
-
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.first === this.last){
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
     }
 }
 
