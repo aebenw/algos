@@ -6,64 +6,38 @@
 //
 // Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 // Output: 7 -> 0 -> 8
-// Explanation: 342 + 465 = 807.
+// Explanation: 342 + 4``65 = 807.
 
 var addTwoNumbers = function(l1, l2) {
-
     function helper(node1, node2, extra = 0){
         let newNode = new ListNode();
         let added;
-
         if(!node1 && !node2) {
-            if(extra ===1 ){
+            if(extra === 1){
                 newNode.val = extra;
                 return newNode
             }  return null;
         }
-
         if(node1 && !node2){
-             added = node1.val + extra;
+            added = node1.val + extra;
+            node1 = node1.next;
         } else if (node2 && !node1){
-            node2.val + extra;
+            added=node2.val + extra;
+            node2 = node2.next;
         } else {
             added = node1.val + node2.val + extra
+            node1 = node1.next;
+            node2 = node2.next;
         }
-
-        if(node1 && !node2){
-            if(added >= 10){
-                let leftOver = added % 10
-                newNode.val = leftOver
-                newNode.next = helper(node1.next, null, 1)
-                return newNode
-            } else {
-                newNode.val = added;
-                newNode.next = helper(node1.next, null)
-                return newNode
-            }
-        } else if (node2 && !node1){
-            let added = node2.val + extra;
-
-            if(added >= 10){
-                let leftOver = added % 10
-                newNode.val = leftOver
-                newNode.next = helper(null, node2.next, 1)
-                return newNode
-            } else {
-                newNode.val = added;
-                newNode.next = helper(null, node2.next)
-                return newNode
-            }
+        if(added >= 10){
+            let leftOver = added % 10
+            newNode.val = leftOver
+            newNode.next = helper(node1, node2, 1) 
+            return newNode
         } else {
-            if(added >= 10){
-                let leftOver = added % 10
-                newNode.val = leftOver
-                newNode.next = helper(node1.next, node2.next, 1)
-                return newNode
-            } else {
-                newNode.val = added;
-                newNode.next = helper(node1.next, node2.next)
-                return newNode
-            }
+            newNode.val = added;
+            newNode.next = helper(node1, node2)
+            return newNode
         }
     }
     return helper(l1, l2)
