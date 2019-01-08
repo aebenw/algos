@@ -6,7 +6,7 @@ class Node {
     }
 }
 
-export default class BST{
+class BST{
     constructor(){
         this.root = null;
     }
@@ -16,11 +16,11 @@ export default class BST{
 
 
         if(!this.root){
-            this.root = insertedNode
+            this.root = insertedNode;
             return this;
         }
 
-        let currentNode = this.root
+        let currentNode = this.root;
         let conditional = true;
         while(conditional){
             if(insertedNode.val === currentNode.val) return undefined;
@@ -139,3 +139,5 @@ tree.insert(11);
 tree.insert(2);
 tree.insert(16);
 tree.insert(7);
+
+export default tree;

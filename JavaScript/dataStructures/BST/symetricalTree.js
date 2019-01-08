@@ -1,6 +1,5 @@
-import BST from './BinarySearchTree.js';
+import tree from './BinarySearchTree.js';
 
-let tree = new BST();
 tree.insert(10);
 tree.insert(5);
 tree.insert(13);
