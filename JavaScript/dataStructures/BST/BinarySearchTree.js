@@ -6,7 +6,7 @@ class Node {
     }
 }
 
-class BST{
+export default class BST{
     constructor(){
         this.root = null;
     }
@@ -121,6 +121,9 @@ class BST{
 
 
 }
+
+const makeBST = () => new BST();
+
 
 let tree = new BST();
 // tree.root = new Node(10);
