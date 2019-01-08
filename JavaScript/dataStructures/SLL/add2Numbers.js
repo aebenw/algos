@@ -11,28 +11,27 @@
 var addTwoNumbers = function(l1, l2) {
     function helper(node1, node2, extra = 0){
         let newNode = new ListNode();
-        let added;
         if(!node1 && !node2) {
             if(extra === 1){
                 newNode.val = extra;
                 return newNode
             }  return null;
-        }
-        if(node1 && !node2){
-            added = node1.val + extra;
-            node1 = node1.next;
-        } else if (node2 && !node1){
-            added=node2.val + extra;
-            node2 = node2.next;
-        } else {
-            added = node1.val + node2.val + extra
-            node1 = node1.next;
-            node2 = node2.next;
-        }
+        }   
+        let x;
+        let y;
+        if(node1){
+            x = node1.val;
+            node1 = node1.next
+        } else x = 0
+        if(node2){
+            y = node2.val;
+            node2 = node2.next
+        } else y = 0
+        let added = x + y + extra
         if(added >= 10){
             let leftOver = added % 10
             newNode.val = leftOver
-            newNode.next = helper(node1, node2, 1) 
+            newNode.next = helper(node1, node2, 1)
             return newNode
         } else {
             newNode.val = added;
